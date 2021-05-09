@@ -1,17 +1,10 @@
 import React, {useState} from 'react';
 import { StyleSheet, TextInput, View, Button } from 'react-native';
 
-const AddTodo = ({ setTodos  } : {setTodos: any}) => {
+import {IAddTodo} from "./types";
+
+const AddTodo:React.FC<{addTodo: IAddTodo}> = ({ addTodo }) => {
     const [todo, setTodo] = useState('');
-
-    const onAddTodo = () => {
-        if (!todo.trim()) {
-            return
-        }
-
-        setTodos((prev: string[]) => [...prev, todo]);
-        setTodo('');
-    }
 
     return (
         <View style={styles.container}>
@@ -20,8 +13,14 @@ const AddTodo = ({ setTodos  } : {setTodos: any}) => {
                 style={styles.inputTodo}
                 placeholder="Введите текст задачи"
                 value={todo}
+                autoCapitalize="none"
+                autoCorrect={false}
             />
-            <Button title="Добавить" color="#5c7da0" onPress={onAddTodo}/>
+            <Button
+                title="Добавить"
+                color="#5c7da0"
+                onPress={() => addTodo(todo, setTodo)}
+            />
         </View>
     );
 }
@@ -32,6 +31,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignContent: 'center',
         justifyContent: 'space-between',
+        marginTop: 10,
     },
     inputTodo: {
         width: '70%',

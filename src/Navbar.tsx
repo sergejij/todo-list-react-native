@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View,  } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-const Navbar = () => {
+const Navbar:React.FC = () => {
     return (
       <View style={styles.navbar}>
         <Text style={styles.headline}>Todos</Text>
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
        backgroundColor: '#5c7da0',
        alignItems: 'center',
        justifyContent: 'center',
-       height: '10%',
+       height: 80,
    },
    headline: {
       color: '#fff',

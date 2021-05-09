@@ -1,22 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {Alert, StyleSheet, View} from 'react-native';
 
 import Navbar from "./src/Navbar";
 import AddTodo from "./src/AddTodo";
 import TodoList from "./src/TodoList";
+import {IAddTodo, typeTodo} from "./src/types";
+import {EmptyTaskError} from "./src/constants";
 
-export default function App() {
-  const [todos, setTodos] = useState<string[]>([]);
+const App:React.FC = () => {
+  const [todos, setTodos] = useState<typeTodo[]>([]);
+
+  const deleteTodo = (id: string) => {
+    setTodos((prev: typeTodo[]) => prev.filter((todo: typeTodo) => todo.id !== id));
+  };
+
+  const addTodo: IAddTodo = (todo, setTodo) => {
+    if (todo.trim()) {
+      setTodos((prev: typeTodo[]) => [{
+          id: Date.now().toString(),
+          text: todo,
+        },
+        ...prev,
+      ]);
+      setTodo('');
+    } else {
+      Alert.alert(EmptyTaskError);
+    }
+  }
 
   return (
     <View style={styles.container}>
       <Navbar />
       <View style={styles.content}>
-        <AddTodo setTodos={setTodos} />
-        <TodoList todos={todos} />
+        <AddTodo addTodo={addTodo} />
+        <TodoList deleteTodo={deleteTodo} todos={todos} />
       </View>
-      {/*<StatusBar style="auto" />*/}
     </View>
   );
 }
@@ -24,7 +42,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#e7e7e7',
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'flex-start',
@@ -33,3 +51,5 @@ const styles = StyleSheet.create({
     width: '90%',
   }
 });
+
+export default App;
