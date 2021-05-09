@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheet, FlatList } from "react-native";
 
+import { ITodoList } from "../types";
 import Todo from "./Todo";
-import { ITodoList } from "./types";
 
 const TodoList: React.FC<ITodoList> = ({ todos, deleteTodo }) => (
     <FlatList

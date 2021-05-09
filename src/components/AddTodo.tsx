@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, TextInput, View, Button } from "react-native";
 
-import { IAddTodo } from "./types";
+import { IAddTodo } from "../types";
 
 const AddTodo: React.FC<{ addTodo: IAddTodo }> = ({ addTodo }) => {
     const [todo, setTodo] = useState("");

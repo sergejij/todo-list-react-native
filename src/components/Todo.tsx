@@ -2,7 +2,7 @@ import { Feather } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
-import { ITodo } from "./types";
+import { ITodo } from "../types";
 
 const Todo: React.FC<ITodo> = ({ text, id, deleteTodo }) => (
     <TouchableOpacity

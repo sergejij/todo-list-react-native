@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Alert, StyleSheet, View } from "react-native";
 
-import AddTodo from "./src/AddTodo";
-import Navbar from "./src/Navbar";
-import TodoList from "./src/TodoList";
+import AddTodo from "./src/components/AddTodo";
+import Navbar from "./src/components/Navbar";
+import TodoList from "./src/components/TodoList";
 import EmptyTaskError from "./src/constants";
 import { IAddTodo, typeTodo } from "./src/types";
 
