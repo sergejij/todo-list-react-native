@@ -15,4 +15,3 @@ export interface ITodoList {
     todos: typeTodo[],
     deleteTodo: (id: string) => void
 }
-
