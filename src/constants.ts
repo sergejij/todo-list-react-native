@@ -1,1 +1,3 @@
-export const EmptyTaskError = 'Текст задачи не может быть пустым';
+const EmptyTaskError = "Текст задачи не может быть пустым";
+
+export default EmptyTaskError;
