@@ -1,19 +1,40 @@
 import React from "react";
-// import { StyleSheet } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 
 import AddTodo from "../components/AddTodo";
-import TodoList from "../components/TodoList";
+import Todo from "../components/Todo";
 import { IMainScreen } from "../types";
 
-const MainScreen: React.FC<IMainScreen> = ({ todos, deleteTodo, addTodo }) => {
+const MainScreen: React.FC<IMainScreen> = ({
+    todos,
+    deleteTodo,
+    addTodo,
+    openTodo,
+}) => {
     return (
         <>
             <AddTodo addTodo={addTodo} />
-            <TodoList deleteTodo={deleteTodo} todos={todos} />
+            <FlatList
+                style={styles.container}
+                keyExtractor={({ id }) => id}
+                data={todos}
+                renderItem={({ item }) => (
+                    <Todo
+                        text={item.text}
+                        id={item.id}
+                        deleteTodo={deleteTodo}
+                        openTodo={openTodo}
+                    />
+                )}
+            />
         </>
     );
 };
 
-// const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    container: {
+        marginTop: 20,
+    },
+});
 
 export default MainScreen;

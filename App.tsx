@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { Alert, StyleSheet, View } from "react-native";
 
-import AddTodo from "./src/components/AddTodo";
 import Navbar from "./src/components/Navbar";
-import TodoList from "./src/components/TodoList";
 import EmptyTaskError from "./src/constants";
-import { IAddTodo, typeTodo } from "./src/types";
+import MainScreen from "./src/screens/MainScreen";
+import TodoScreen from "./src/screens/TodoScreen";
+import { typeAddTodo, typeTodo } from "./src/types";
 
 const App: React.FC = () => {
     const [todos, setTodos] = useState<typeTodo[]>([]);
+    const [todoId, setTodoId] = useState<string | null>(null);
 
     const deleteTodo = (id: string) => {
         setTodos((prev: typeTodo[]) =>
@@ -16,7 +17,7 @@ const App: React.FC = () => {
         );
     };
 
-    const addTodo: IAddTodo = (todo, setTodo) => {
+    const addTodo: typeAddTodo = (todo, setTodo) => {
         if (todo.trim()) {
             setTodos((prev: typeTodo[]) => [
                 {
@@ -31,13 +32,31 @@ const App: React.FC = () => {
         }
     };
 
+    let content = (
+        <MainScreen
+            todos={todos}
+            deleteTodo={deleteTodo}
+            addTodo={addTodo}
+            openTodo={(id: string) => {
+                setTodoId(id);
+            }}
+        />
+    );
+    if (todoId) {
+        content = (
+            <TodoScreen
+                openMain={() => {
+                    setTodoId(null);
+                }}
+                todo={todos.filter((todo) => todo.id === todoId)[0]}
+            />
+        );
+    }
+
     return (
         <View style={styles.container}>
             <Navbar />
-            <View style={styles.content}>
-                <AddTodo addTodo={addTodo} />
-                <TodoList deleteTodo={deleteTodo} todos={todos} />
-            </View>
+            <View style={styles.content}>{content}</View>
         </View>
     );
 };
@@ -52,6 +71,7 @@ const styles = StyleSheet.create({
     },
     content: {
         width: "90%",
+        marginTop: 20,
     },
 });
 

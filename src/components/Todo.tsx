@@ -4,13 +4,14 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import { ITodo } from "../types";
 
-const Todo: React.FC<ITodo> = ({ text, id, deleteTodo }) => (
+const Todo: React.FC<ITodo> = ({ text, id, deleteTodo, openTodo }) => (
     <TouchableOpacity
+        onPress={() => openTodo(id)}
         onLongPress={() => deleteTodo(id)}
         activeOpacity={0.7}
         style={styles.todo}
     >
-        <Text>{text}</Text>
+        <Text style={styles.todoText}>{text}</Text>
         <Feather
             onPress={() => deleteTodo(id)}
             name="check"
@@ -30,6 +31,9 @@ const styles = StyleSheet.create({
         padding: 14,
         backgroundColor: "#fafafa",
         marginBottom: 10,
+    },
+    todoText: {
+        width: "80%",
     },
 });
 

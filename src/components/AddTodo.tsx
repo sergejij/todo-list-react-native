@@ -3,7 +3,7 @@ import { StyleSheet, TextInput, View, Button } from "react-native";
 
 import { IAddTodo } from "../types";
 
-const AddTodo: React.FC<{ addTodo: IAddTodo }> = ({ addTodo }) => {
+const AddTodo: React.FC<IAddTodo> = ({ addTodo }) => {
     const [todo, setTodo] = useState("");
 
     return (
@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignContent: "center",
         justifyContent: "space-between",
-        marginTop: 10,
     },
     inputTodo: {
         width: "70%",
