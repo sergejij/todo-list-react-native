@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, TextInput, View, Button } from "react-native";
 
+import { BUTTONS, COLORS, TEXTS } from "../constants";
 import { IAddTodo } from "../types";
 
 const AddTodo: React.FC<IAddTodo> = ({ addTodo }) => {
@@ -11,14 +12,14 @@ const AddTodo: React.FC<IAddTodo> = ({ addTodo }) => {
             <TextInput
                 onChangeText={setTodo}
                 style={styles.inputTodo}
-                placeholder="Введите текст задачи"
+                placeholder={TEXTS.placeholder}
                 value={todo}
                 autoCapitalize="none"
                 autoCorrect={false}
             />
             <Button
-                title="Добавить"
-                color="#5c7da0"
+                title={BUTTONS.add}
+                color={COLORS.main}
                 onPress={() => addTodo(todo, setTodo)}
             />
         </View>
@@ -31,10 +32,11 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignContent: "center",
         justifyContent: "space-between",
+        marginBottom: 30,
     },
     inputTodo: {
         width: "70%",
-        borderBottomColor: "#5c7da0",
+        borderBottomColor: COLORS.main,
         borderBottomWidth: 2,
         padding: 5,
     },

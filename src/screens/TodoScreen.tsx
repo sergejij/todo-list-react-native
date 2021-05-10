@@ -1,22 +1,56 @@
 import { Entypo } from "@expo/vector-icons";
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 
-import { typeTodo } from "../types";
+import EditModal from "../components/EditModal";
+import { BUTTONS, COLORS } from "../constants";
+import { ITodoScreen } from "../types";
 
-const TodoScreen: React.FC<{ openMain: () => void; todo: typeTodo }> = ({
+const TodoScreen: React.FC<ITodoScreen> = ({
     openMain,
     todo,
+    deleteTodo,
+    updateTodo,
 }) => {
+    const [modal, setModal] = useState(false);
+
+    const onUpdateTodo = (text: string) => {
+        updateTodo(todo.id, text);
+        setModal(false);
+    };
+
     return (
         <View>
+            <EditModal
+                value={todo.text}
+                visible={modal}
+                onCancel={() => setModal(false)}
+                onUpdateTodo={onUpdateTodo}
+            />
             <View style={styles.cardTodo}>
                 <Text style={styles.cardText}>{todo.text}</Text>
-                <Entypo color="#5c7da0" name="pencil" size={24} />
+                <Entypo
+                    onPress={() => setModal(true)}
+                    color={COLORS.main}
+                    name="pencil"
+                    size={24}
+                />
             </View>
             <View style={styles.buttons}>
-                <Button color="#5c7da0" onPress={openMain} title="На главную" />
-                <Button color="#CD5C5C" onPress={openMain} title="Удалить" />
+                <View style={styles.button}>
+                    <Button
+                        color={COLORS.main}
+                        onPress={openMain}
+                        title={BUTTONS.home}
+                    />
+                </View>
+                <View style={styles.button}>
+                    <Button
+                        color={COLORS.dangerous}
+                        onPress={() => deleteTodo(todo.id)}
+                        title={BUTTONS.delete}
+                    />
+                </View>
             </View>
         </View>
     );
@@ -25,22 +59,29 @@ const TodoScreen: React.FC<{ openMain: () => void; todo: typeTodo }> = ({
 const styles = StyleSheet.create({
     buttons: {
         flexDirection: "row",
-        justifyContent: "space-around",
+        justifyContent: "space-between",
+    },
+    button: {
+        width: "40%",
     },
     cardTodo: {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-around",
-        backgroundColor: "#fff",
-        paddingVertical: 30,
-        paddingHorizontal: 10,
+        backgroundColor: COLORS.backgroundCard,
+        paddingVertical: 20,
+        paddingHorizontal: 8,
         marginBottom: 10,
         borderRadius: 3,
+        shadowColor: "#000",
+        shadowRadius: 2,
+        shadowOpacity: 0.3,
+        shadowOffset: { width: 2, height: 2 },
+        elevation: 5,
     },
     cardText: {
         width: "80%",
     },
-    buttonHome: {},
 });
 
 export default TodoScreen;
