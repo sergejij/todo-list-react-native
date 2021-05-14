@@ -1,9 +1,10 @@
 import { Feather } from "@expo/vector-icons";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 
 import { COLORS } from "../constants";
 import { ITodo } from "../types";
+import AppText from "./ui/AppText";
 
 const Todo: React.FC<ITodo> = ({ text, id, deleteTodo, openTodo }) => (
     <TouchableOpacity
@@ -12,7 +13,7 @@ const Todo: React.FC<ITodo> = ({ text, id, deleteTodo, openTodo }) => (
         activeOpacity={0.7}
         style={styles.todo}
     >
-        <Text style={styles.todoText}>{text}</Text>
+        <AppText style={styles.todoText}>{text}</AppText>
         <Feather
             onPress={() => deleteTodo(id)}
             name="check"
@@ -26,6 +27,7 @@ const styles = StyleSheet.create({
     todo: {
         flexDirection: "row",
         justifyContent: "space-between",
+        alignItems: "center",
         borderLeftColor: COLORS.main,
         borderLeftWidth: 8,
         borderRadius: 3,

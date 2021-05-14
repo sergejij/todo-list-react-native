@@ -1,11 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 import { COLORS } from "../constants";
+import AppDemiBoldText from "./ui/AppDemiBoldText";
 
 const Navbar: React.FC = () => (
     <View style={styles.navbar}>
-        <Text style={styles.headline}>Todos</Text>
+        <AppDemiBoldText style={styles.headline}>Todos</AppDemiBoldText>
     </View>
 );
 
@@ -19,7 +20,6 @@ const styles = StyleSheet.create({
     },
     headline: {
         color: COLORS.backgroundCard,
-        fontFamily: "Roboto",
         fontSize: 20,
     },
 });

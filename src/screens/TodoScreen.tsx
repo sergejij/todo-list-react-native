@@ -1,8 +1,9 @@
 import { Entypo } from "@expo/vector-icons";
 import React, { useState } from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Button, StyleSheet } from "react-native";
 
 import EditModal from "../components/EditModal";
+import AppText from "../components/ui/AppText";
 import { BUTTONS, COLORS } from "../constants";
 import { ITodoScreen } from "../types";
 
@@ -28,7 +29,7 @@ const TodoScreen: React.FC<ITodoScreen> = ({
                 onUpdateTodo={onUpdateTodo}
             />
             <View style={styles.cardTodo}>
-                <Text style={styles.cardText}>{todo.text}</Text>
+                <AppText style={styles.cardText}>{todo.text}</AppText>
                 <Entypo
                     onPress={() => setModal(true)}
                     color={COLORS.main}

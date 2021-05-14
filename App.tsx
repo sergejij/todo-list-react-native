@@ -1,16 +1,37 @@
+import AppLoading from "expo-app-loading";
+import * as Font from "expo-font";
 import React, { useState } from "react";
 import { Alert, StyleSheet, View } from "react-native";
 
+import GolosDemiBold from "./assets/fonts/Golos-Text_DemiBold.ttf";
+import GolosRegular from "./assets/fonts/Golos-Text_Regular.ttf";
 import Navbar from "./src/components/Navbar";
 import { BUTTONS, COLORS, ERRORS, TEXTS } from "./src/constants";
 import MainScreen from "./src/screens/MainScreen";
 import TodoScreen from "./src/screens/TodoScreen";
 import { typeAddTodo, typeChangeTodo, typeTodo } from "./src/types";
 
+async function loadApplication() {
+    await Font.loadAsync({
+        "golos-regular": GolosRegular,
+        "golos-demiBold": GolosDemiBold,
+    });
+}
+
 const App: React.FC = () => {
+    const [isReady, setIsReady] = useState(false);
     const [todos, setTodos] = useState<typeTodo[]>([]);
     const [todoId, setTodoId] = useState<string | null>(null);
 
+    if (!isReady) {
+        return (
+            <AppLoading
+                startAsync={loadApplication}
+                onError={(err) => console.log(err)}
+                onFinish={() => setIsReady(true)}
+            />
+        );
+    }
     const deleteTodo = (id: string) => {
         const todo: typeTodo | undefined = todos.find(
             (t: typeTodo) => t.id === id

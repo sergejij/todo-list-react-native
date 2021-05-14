@@ -1,9 +1,10 @@
 import React from "react";
-import { FlatList, StyleSheet, Image, View, Text } from "react-native";
+import { FlatList, StyleSheet, Image, View } from "react-native";
 
 import confusedImg from "../../assets/confused.jpg";
 import AddTodo from "../components/AddTodo";
 import Todo from "../components/Todo";
+import AppText from "../components/ui/AppText";
 import { TEXTS } from "../constants";
 import { IMainScreen } from "../types";
 
@@ -31,7 +32,7 @@ const MainScreen: React.FC<IMainScreen> = ({
         content = (
             <View style={styles.imgWrap}>
                 <Image style={styles.img} source={confusedImg} />
-                <Text style={styles.text}>{TEXTS.noTasks}</Text>
+                <AppText style={styles.text}>{TEXTS.noTasks}</AppText>
             </View>
         );
     }
