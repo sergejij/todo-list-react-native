@@ -1,12 +1,12 @@
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 import React, { useState } from "react";
-import { Alert, StyleSheet, View } from "react-native";
+import { Alert, Keyboard, StyleSheet, View } from "react-native";
 
 import GolosDemiBold from "./assets/fonts/Golos-Text_DemiBold.ttf";
 import GolosRegular from "./assets/fonts/Golos-Text_Regular.ttf";
 import Navbar from "./src/components/Navbar";
-import { BUTTONS, COLORS, ERRORS, TEXTS } from "./src/constants";
+import { BUTTONS, COLORS, ERRORS, TEXTS, STYLES } from "./src/constants";
 import MainScreen from "./src/screens/MainScreen";
 import TodoScreen from "./src/screens/TodoScreen";
 import { typeAddTodo, typeChangeTodo, typeTodo } from "./src/types";
@@ -71,6 +71,7 @@ const App: React.FC = () => {
                 ...prev,
             ]);
             setTodo("");
+            Keyboard.dismiss();
         } else {
             Alert.alert(ERRORS.emptyTask);
         }
@@ -123,12 +124,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: COLORS.background,
-        alignItems: "center",
         flexDirection: "column",
-        justifyContent: "flex-start",
     },
     content: {
-        width: "90%",
+        marginHorizontal: STYLES.paddingHorizontal,
         marginTop: 20,
     },
 });

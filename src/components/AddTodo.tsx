@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { StyleSheet, TextInput, View, Button } from "react-native";
+import { StyleSheet, TextInput, View } from "react-native";
 
 import { BUTTONS, COLORS, TEXTS } from "../constants";
 import { IAddTodo } from "../types";
+import AppButton from "./ui/AppButton";
 
 const AddTodo: React.FC<IAddTodo> = ({ addTodo }) => {
     const [todo, setTodo] = useState("");
@@ -17,11 +18,12 @@ const AddTodo: React.FC<IAddTodo> = ({ addTodo }) => {
                 autoCapitalize="none"
                 autoCorrect={false}
             />
-            <Button
-                title={BUTTONS.add}
+            <AppButton
                 color={COLORS.main}
                 onPress={() => addTodo(todo, setTodo)}
-            />
+            >
+                {BUTTONS.add}
+            </AppButton>
         </View>
     );
 };
@@ -35,7 +37,7 @@ const styles = StyleSheet.create({
         marginBottom: 30,
     },
     inputTodo: {
-        width: "70%",
+        width: "60%",
         borderBottomColor: COLORS.main,
         borderBottomWidth: 2,
         padding: 5,

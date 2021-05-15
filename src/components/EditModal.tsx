@@ -10,6 +10,7 @@ import {
 
 import { BUTTONS, COLORS, ERRORS, TEXTS } from "../constants";
 import { IEditModal } from "../types";
+import AppButton from "./ui/AppButton";
 
 const EditModal: React.FC<IEditModal> = ({
     visible,
@@ -40,18 +41,14 @@ const EditModal: React.FC<IEditModal> = ({
                 />
                 <View style={styles.buttons}>
                     <View style={styles.button}>
-                        <Button
-                            color={COLORS.dangerous}
-                            onPress={onCancel}
-                            title={BUTTONS.cancel}
-                        />
+                        <AppButton color={COLORS.dangerous} onPress={onCancel}>
+                            {BUTTONS.cancel}
+                        </AppButton>
                     </View>
                     <View style={styles.button}>
-                        <Button
-                            color={COLORS.main}
-                            onPress={saveHandler}
-                            title={BUTTONS.save}
-                        />
+                        <AppButton color={COLORS.main} onPress={saveHandler}>
+                            {BUTTONS.save}
+                        </AppButton>
                     </View>
                 </View>
             </View>

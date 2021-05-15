@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
 
-const AppDemiBoldText: React.FC<{
+const AppTextDemiBold: React.FC<{
     children: React.ReactNode;
     style: object;
 }> = ({ children, style }) => {
@@ -14,4 +14,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default AppDemiBoldText;
+export default AppTextDemiBold;

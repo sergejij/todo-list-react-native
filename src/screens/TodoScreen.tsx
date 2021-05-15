@@ -1,8 +1,9 @@
 import { Entypo } from "@expo/vector-icons";
 import React, { useState } from "react";
-import { View, Button, StyleSheet } from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native";
 
 import EditModal from "../components/EditModal";
+import AppButton from "../components/ui/AppButton";
 import AppText from "../components/ui/AppText";
 import { BUTTONS, COLORS } from "../constants";
 import { ITodoScreen } from "../types";
@@ -39,18 +40,17 @@ const TodoScreen: React.FC<ITodoScreen> = ({
             </View>
             <View style={styles.buttons}>
                 <View style={styles.button}>
-                    <Button
-                        color={COLORS.main}
-                        onPress={openMain}
-                        title={BUTTONS.home}
-                    />
+                    <AppButton color={COLORS.secondary} onPress={openMain}>
+                        {BUTTONS.home}
+                    </AppButton>
                 </View>
                 <View style={styles.button}>
-                    <Button
+                    <AppButton
                         color={COLORS.dangerous}
                         onPress={() => deleteTodo(todo.id)}
-                        title={BUTTONS.delete}
-                    />
+                    >
+                        {BUTTONS.delete}
+                    </AppButton>
                 </View>
             </View>
         </View>
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
     },
     button: {
-        width: "40%",
+        width: Dimensions.get("window").width > 400 ? 160 : 120,
     },
     cardTodo: {
         flexDirection: "row",

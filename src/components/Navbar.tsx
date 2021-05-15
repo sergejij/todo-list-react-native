@@ -2,11 +2,11 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 
 import { COLORS } from "../constants";
-import AppDemiBoldText from "./ui/AppDemiBoldText";
+import AppTextDemiBold from "./ui/AppTextDemiBold";
 
 const Navbar: React.FC = () => (
     <View style={styles.navbar}>
-        <AppDemiBoldText style={styles.headline}>Todos</AppDemiBoldText>
+        <AppTextDemiBold style={styles.headline}>Todos</AppTextDemiBold>
     </View>
 );
 

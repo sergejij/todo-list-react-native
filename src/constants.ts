@@ -22,4 +22,9 @@ export const COLORS = {
     background: "#e7e7e7",
     backgroundCard: "#fafafa",
     dangerous: "#CD5C5C",
+    secondary: "#808080",
+};
+
+export const STYLES = {
+    paddingHorizontal: 20,
 };
